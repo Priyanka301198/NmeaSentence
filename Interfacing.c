@@ -21,7 +21,7 @@ for(i = 0; i < 500; i++)
   fflush(stdout);
  }
 fprintf(stdout, "\n");
-Close(fd);
+close(fd);
 return 0;
 }
 void sleep_ms(int milliseconds) 
@@ -31,5 +31,6 @@ void sleep_ms(int milliseconds)
  ts.tv_nsec = (milliseconds % 1000) * 1000000;
  nanosleep(&ts, NULL);
 }
+
 
 
