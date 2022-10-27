@@ -68,8 +68,9 @@ int gps() {
 	return 0;
 }
 
-int vcan(){
-    int s, i; 
+int vcan()
+{
+	int s, i; 
 	int nbyte;
 	struct sockaddr_can addr;
 	struct ifreq ifr;
@@ -107,47 +108,14 @@ int vcan(){
 
 	printf("\r\n");
 
-    struct can_filter rfilter[1];
-
-	rfilter[0].can_id   = 0x550;
-	rfilter[0].can_mask = 0xFF0;
-	//rfilter[1].can_id   = 0x200;
-	//rfilter[1].can_mask = 0x700;
-
-    setsockopt(s, SOL_CAN_RAW, CAN_RAW_FILTER, &rfilter, sizeof(rfilter));
-
-	nbyte = read(s, &frame, sizeof(struct can_frame));
-
-	if (nbyte < 0) {
-		perror("Read");
-		return 1;
-	}
-
-	printf("0x%03X [%d] ",frame.can_id, frame.can_dlc);
-
-	for (i = 0; i < frame.can_dlc; i++)
-		printf("%02X ",frame.data[i]);
-
-	printf("\r\n");
-
-    frame.can_id = 0x555;
-	frame.can_dlc = 5;
-	sprintf(frame.data, "Hello");
-
-	if (write(s, &frame, sizeof(struct can_frame)) != sizeof(struct can_frame)) {
-		perror("Write");
-		return 1;
-	}
-
-    if (close(s) < 0) {
+	if (close(s) < 0) {
 		perror("Close");
 		return 1;
 	}
-
 	return 0;
 }
 
 int main (){
-    return gps();
-    //return vcan();
+     gps();
+     vcan();
 }
