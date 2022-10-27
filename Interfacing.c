@@ -10,7 +10,7 @@ void sleep_ms(int);
 int main(void)
 {
 int fd,i;
-if((fd = open("/dev/ttyUSB0",O_RDWR | O_NOCTTY | O_NDELAY) < 0);
+if(fd = open("/dev/ttyUSB0",O_RDWR | O_NOCTTY | O_NDELAY) < 0)
   {
     fprintf(stdout, "Unable to open serial device: %s\n", strerror(errno));
     return 1;
