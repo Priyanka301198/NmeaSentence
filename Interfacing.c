@@ -15,7 +15,7 @@
 #include <wiringPi.h>
 #include <wiringSerial.h>
 
-//#include <pthread.h>
+#include <pthread.h>
 
 int gps() {
   int serial_port;  
@@ -118,9 +118,9 @@ int vcan()
 }
 
 int main (){
-     //pthread_t newthread;
-     //pthread_create(&newthread, gps);
-     gps();
+     pthread_t newthread;
+     pthread_create(&newthread, gps);
+     //gps();
      vcan();
 }
 
