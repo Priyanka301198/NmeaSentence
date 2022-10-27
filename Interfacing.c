@@ -14,7 +14,7 @@
 
 #include <termios.h>
 
-#include <pthread.h>
+//#include <pthread.h>
 
 int gps() {
   int serial_port;  
@@ -23,7 +23,7 @@ int gps() {
   unsigned char GGA_index=0;
   unsigned char is_GGA_received_completely = 0;
   
-  if ((serial_port = serialOpen ("/dev/ttyUSB0", 9600)) < 0)		/* open serial port */
+  if ((serial_port = Open ("/dev/ttyUSB0", 9600)) < 0)		/* open serial port */
   {
     fprintf (stderr, "Unable to open serial device: %s\n", strerror (errno)) ;
     return 1 ;
@@ -33,7 +33,7 @@ int gps() {
 	  
 		if(serialDataAvail (serial_port) )		/* check for any data available on serial port */
 		  { 
-			dat = serialGetchar(serial_port);		/* receive character serially */		
+			dat = tcgetattr(serial_port);		/* receive character serially */		
 			if(dat == '$'){
 				IsitGGAstring = 0;
 				GGA_index = 0;
@@ -111,10 +111,9 @@ int vcan()
 }
 
 int main (){
-     pthread_t newthread;
-     pthread_create(&newthread, gps);
-     //gps();
+     //pthread_t newthread;
+     //pthread_create(&newthread, gps);
+     gps();
      vcan();
 }
-
 
