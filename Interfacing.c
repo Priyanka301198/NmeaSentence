@@ -121,6 +121,6 @@ int main (){
      //pthread_t newthread;
      //pthread_create(&newthread, gps);
      gps();
-     vcan();
+    // vcan();
 }
 
