@@ -1,13 +1,22 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+
+#include <net/if.h>
+#include <sys/ioctl.h>
+#include <sys/socket.h>
+
+#include <linux/can.h>
+#include <linux/can/raw.h>
+
 #include <errno.h>
 
 #include <wiringPi.h>
 #include <wiringSerial.h>
 
-int main ()
-{
-  int serial_port; 
+int gps() {
+  int serial_port;  
   char dat,buff[100],GGA_code[3];
   unsigned char IsitGGAstring=0;
   unsigned char GGA_index=0;
@@ -53,8 +62,92 @@ int main ()
 		  }
 		if(is_GGA_received_completely==1){
 			printf("GGA: %s",buff);
-			is_GGA_received_completely = 0;
+			 is_GGA_received_completely= 0;
 		}
 	}
 	return 0;
+}
+
+int vcan(){
+    int s, i; 
+	int nbyte;
+	struct sockaddr_can addr;
+	struct ifreq ifr;
+	struct can_frame frame;
+
+	printf("CAN Sockets Receive Demo\r\n");
+
+	if ((s = socket(PF_CAN, SOCK_RAW, CAN_RAW)) < 0) {    
+		perror("Socket");
+		return 1;
+	}
+
+	strcpy(ifr.ifr_name, "vcan0" );
+	ioctl(s, SIOCGIFINDEX, &ifr);    
+	memset(&addr, 0, sizeof(addr));
+	addr.can_family = AF_CAN;
+	addr.can_ifindex = ifr.ifr_ifindex;
+
+	if (bind(s, (struct sockaddr *)&addr, sizeof(addr)) < 0) {  
+		perror("Bind");
+		return 1;
+	}
+
+	nbyte = read(s, &frame, sizeof(struct can_frame));   
+
+ 	if (nbyte < 0) {
+		perror("Read");
+		return 1;
+	}
+
+	printf("0x%03X [%d] ",frame.can_id, frame.can_dlc);
+
+	for (i = 0; i < frame.can_dlc; i++)
+		printf("%02X ",frame.data[i]);
+
+	printf("\r\n");
+
+    struct can_filter rfilter[1];
+
+	rfilter[0].can_id   = 0x550;
+	rfilter[0].can_mask = 0xFF0;
+	//rfilter[1].can_id   = 0x200;
+	//rfilter[1].can_mask = 0x700;
+
+    setsockopt(s, SOL_CAN_RAW, CAN_RAW_FILTER, &rfilter, sizeof(rfilter));
+
+	nbyte = read(s, &frame, sizeof(struct can_frame));
+
+	if (nbyte < 0) {
+		perror("Read");
+		return 1;
+	}
+
+	printf("0x%03X [%d] ",frame.can_id, frame.can_dlc);
+
+	for (i = 0; i < frame.can_dlc; i++)
+		printf("%02X ",frame.data[i]);
+
+	printf("\r\n");
+
+    frame.can_id = 0x555;
+	frame.can_dlc = 5;
+	sprintf(frame.data, "Hello");
+
+	if (write(s, &frame, sizeof(struct can_frame)) != sizeof(struct can_frame)) {
+		perror("Write");
+		return 1;
+	}
+
+    if (close(s) < 0) {
+		perror("Close");
+		return 1;
+	}
+
+	return 0;
+}
+
+int main (){
+    return gps();
+    //return vcan();
 }
