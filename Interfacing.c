@@ -17,7 +17,7 @@ if(fd = open("/dev/ttyUSB0",O_RDWR | O_NOCTTY | O_NDELAY) < 0)
   }
 for(i = 0; i < 500; i++)
  {
-  putchar(tcgetattr(fd, &SerialPortSettings));
+  putchar(tcgetattr(fd));
   fflush(stdout);
  }
 fprintf(stdout, "\n");
@@ -31,6 +31,4 @@ void sleep_ms(int milliseconds)
  ts.tv_nsec = (milliseconds % 1000) * 1000000;
  nanosleep(&ts, NULL);
 }
-
-
 
