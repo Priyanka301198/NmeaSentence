@@ -12,7 +12,7 @@
 
 #include <errno.h>
 
-#include <wiringSerial.h>
+#include <termios.h>
 
 #include <pthread.h>
 
@@ -26,12 +26,6 @@ int gps() {
   if ((serial_port = serialOpen ("/dev/ttyUSB0", 9600)) < 0)		/* open serial port */
   {
     fprintf (stderr, "Unable to open serial device: %s\n", strerror (errno)) ;
-    return 1 ;
-  }
-
-  if (wiringPiSetup () == -1)							/* initializes wiringPi setup */
-  {
-    fprintf (stdout, "Unable to start wiringPi: %s\n", strerror (errno)) ;
     return 1 ;
   }
 
@@ -122,4 +116,5 @@ int main (){
      //gps();
      vcan();
 }
+
 
