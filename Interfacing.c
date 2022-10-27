@@ -15,6 +15,8 @@
 #include <wiringPi.h>
 #include <wiringSerial.h>
 
+#include <pthread.h>
+
 int gps() {
   int serial_port;  
   char dat,buff[100],GGA_code[3];
@@ -116,6 +118,8 @@ int vcan()
 }
 
 int main (){
-     gps();
+     pthread_t newthread;
+     pthread_create(&newthread, gps);
+     //gps();
      vcan();
 }
