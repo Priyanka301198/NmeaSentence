@@ -16,7 +16,7 @@
 
 #include <pthread.h>
 
-void gps*(*) {
+void* gps(void*) {
         int fd;/*File Descriptor*/
 
                 //printf("\n +----------------------------------+");
