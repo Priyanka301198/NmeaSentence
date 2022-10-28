@@ -1,11 +1,23 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
+#include <net/if.h>
+#include <sys/ioctl.h>
+#include <sys/socket.h>
+
+#include <linux/can.h>
+#include <linux/can/raw.h>
+
 #include <fcntl.h>   /* File Control Definitions           */
 #include <termios.h> /* POSIX Terminal Control Definitions */
-#include <unistd.h>  /* UNIX Standard Definitions          */ 
 #include <errno.h>   /* ERROR Number Definitions           */
 
-void main(void)
-    {
+#include <pthread.h>
+
+int gps() {
+  {
         int fd;/*File Descriptor*/
 
                 //printf("\n +----------------------------------+");
@@ -16,7 +28,7 @@ void main(void)
 
                 /* Change /dev/ttyUSB0 to the one corresponding to your system */
 
-        fd = open("/dev/ttyAMA0",O_RDWR | O_NOCTTY | O_NDELAY); /* ttyUSB0 is the FT232 based USB2SERIAL Converter   */
+        fd = open("/dev/ttyUSB0",O_RDWR | O_NOCTTY | O_NDELAY); /* ttyUSB0 is the FT232 based USB2SERIAL Converter   */
                                                                         /* O_RDWR Read/Write access to serial port           */
                                                                         /* O_NOCTTY - No terminal will control the process   */
                                                                         /* O_NDELAY -Non Blocking Mode,Does not care about-  */
@@ -98,4 +110,58 @@ void main(void)
     printf("\n  %d Bytes written to ttyUSB0", bytes_written);
     printf("\n +----------------------------------+\n\n");
     close(fd);/* Close the Serial port */
+}
+
+int vcan()
+{
+	int s, i; 
+	int nbyte;
+	struct sockaddr_can addr;
+	struct ifreq ifr;
+	struct can_frame frame;
+
+	printf("CAN Sockets Receive Demo\r\n");
+
+	if ((s = socket(PF_CAN, SOCK_RAW, CAN_RAW)) < 0) {    
+		perror("Socket");
+		return 1;
+	}
+
+	strcpy(ifr.ifr_name, "vcan0" );
+	ioctl(s, SIOCGIFINDEX, &ifr);    
+	memset(&addr, 0, sizeof(addr));
+	addr.can_family = AF_CAN;
+	addr.can_ifindex = ifr.ifr_ifindex;
+
+	if (bind(s, (struct sockaddr *)&addr, sizeof(addr)) < 0) {  
+		perror("Bind");
+		return 1;
+	}
+
+	nbyte = read(s, &frame, sizeof(struct can_frame));   
+
+ 	if (nbyte < 0) {
+		perror("Read");
+		return 1;
+	}
+
+	printf("0x%03X [%d] ",frame.can_id, frame.can_dlc);
+
+	for (i = 0; i < frame.can_dlc; i++)
+		printf("%02X ",frame.data[i]);
+
+	printf("\r\n");
+
+	if (close(s) < 0) {
+		perror("Close");
+		return 1;
+	}
+	return 0;
+}
+
+int main (){
+     pthread_t newthread;
+     pthread_create(&newthread, gps);
+     //gps();
+     vcan();
 }
