@@ -16,7 +16,7 @@
 
 #include <pthread.h>
 
-void* gps() {
+void *gps () {
         int fd;/*File Descriptor*/
 
                 //printf("\n +----------------------------------+");
@@ -108,6 +108,7 @@ void* gps() {
     printf("\n  %s written to ttyUSB0",write_buffer);
     printf("\n  %d Bytes written to ttyUSB0", bytes_written);
     //printf("\n +----------------------------------+\n\n");
+    printf("\n\n")
     close(fd);/* Close the Serial port */
 }
 
@@ -160,7 +161,8 @@ int vcan()
 
 int main (){
      pthread_t newthread;
-     pthread_create(&newthread,NULL,&gps,NULL);
+     pthread_create(&newthread, &gps);
      //gps();
      vcan();
 }
+
