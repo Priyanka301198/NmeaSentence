@@ -108,7 +108,7 @@ void *gps () {
     printf("\n  %s written to ttyUSB0",write_buffer);
     printf("\n  %d Bytes written to ttyUSB0", bytes_written);
     //printf("\n +----------------------------------+\n\n");
-    printf("\n\n")
+    printf("\n\n");
     close(fd);/* Close the Serial port */
 }
 
@@ -165,4 +165,3 @@ int main (){
      //gps();
      vcan();
 }
-
