@@ -160,7 +160,7 @@ int vcan()
 
 int main (){
      pthread_t newthread;
-     int pthread_create(&newthread,NULL, &gps , NULL);
+     pthread_create(&newthread,&gps);
      //gps();
      vcan();
 }
