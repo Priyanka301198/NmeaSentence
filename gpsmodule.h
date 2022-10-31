@@ -5,7 +5,7 @@
 
 #define DEBUG
 
-struct gpc_data_structure{
+struct gps_data_structure{
     double latitude;
     double longitude;
     char *gps_time;
