@@ -50,7 +50,7 @@ void get_gps_param_by_position(char **param,char *nmea_data, uint8_t position)
     if (position>0){
         *param = strchr(nmea_data,COMMA);
         while (k<position -1){
-            *param = strchr(*param+!,COMMA);
+            *param = strchr(*param+ 1,COMMA);
             k++;
         }
         *param = *param +1;
