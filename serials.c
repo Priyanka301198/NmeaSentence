@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <fcntl.h>
-#include <terminos.h>
+#include <termios.h>
 #include <errno.h>
 #include <limits.h>
 
