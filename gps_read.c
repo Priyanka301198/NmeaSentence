@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <fcntl.h>
-#include <terminos.h>
+#include <termios.h>
 #include "gpsmodule.h"
 #include "../serials/serial.h"
 #include "../main.h"
