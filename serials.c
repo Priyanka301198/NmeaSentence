@@ -47,25 +47,25 @@ void uart_start(struct uart_device_struct *device, bool canonical){
 void uart_reads_chunk(struct uart_device_struct *device, char *buf, size_t buf_len){
       int rc = 0;
       if (device->fd <= 0){
-         perror(device->fd); 
+         perror(fd); 
          return rc;
       }
-      rc = read(device->fd,buf,buf_len)
+      rc = read(fd,buf,buf_len)
       if (rc<=0)
       {
-        perror(device->fd); 
+        perror(fd); 
          return rc;
       }
 }
 
 void uart_reads(struct uart_device_struct *device, char *buf, size_t buf_len){ 
-    return read(device->fd,buf,buf_len);
+    return read(fd,buf,buf_len);
 }
 
 void uart_gps_write(struct uart_device_struct *device, const u_int8_t *string, u_int8_t size){
-    return write(device->fd,string ,size);
+    return write(fd,string ,size);
 }
-void uart_stop(struct uart_Device_struct *device){
+void uart_stop(struct uart_device_struct *device){
     if(device->fd > 0){ 
     free(device->tty);
     close(device->fd);
