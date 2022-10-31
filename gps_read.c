@@ -18,6 +18,16 @@
 
 //pthread_mutex_t cloud_data_gps_mutex = PTHREAD_MUTEX_INITIALIZER;
 
+struct gps_data_structure gps_data;
+    gps_data.latitude = 0.0;
+    gps_data.longitude = 0.0;
+    gps_data.gps_time = '';
+    gps_data.lat_cardinal_sign = '';
+    gps_data.long_cardinal_sign = '';
+    gps_data.pdop = 0.0;
+    gps_data.vdop = 0.0;
+    gps_data.hdop = 0.0;
+    gps_data.speed = 0;
 
 void get_lat_log(double *latitude){
     int degrees;
