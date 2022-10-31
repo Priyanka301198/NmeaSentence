@@ -13,7 +13,7 @@
 #define SIXTY 60
 #define COMMA 0x2c
 #define CR 0x0d
-#define SPEED_POS ((unit8_t)7)
+#define SPEED_POS ((uint8_t)7)
 #define GPS_KMPH_PER_KNOT 1.852
 
 //pthread_mutex_t cloud_data_gps_mutex = PTHREAD_MUTEX_INITIALIZER;
