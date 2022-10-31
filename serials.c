@@ -50,7 +50,7 @@ void uart_reads_chunk(struct uart_device_struct *device, char *buf, size_t buf_l
          perror(fd); 
          return rc;
       }
-      rc = read(fd,buf,buf_len)
+      rc = read(fd,buf,buf_len);
       if (rc<=0)
       {
         perror(fd); 
@@ -59,11 +59,11 @@ void uart_reads_chunk(struct uart_device_struct *device, char *buf, size_t buf_l
 }
 
 void uart_reads(struct uart_device_struct *device, char *buf, size_t buf_len){ 
-    return read(fd,buf,buf_len);
+    return read(device->fd,buf,buf_len);
 }
 
 void uart_gps_write(struct uart_device_struct *device, const u_int8_t *string, u_int8_t size){
-    return write(fd,string ,size);
+    return write(devic->fd,string ,size);
 }
 void uart_stop(struct uart_device_struct *device){
     if(device->fd > 0){ 
