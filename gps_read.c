@@ -18,16 +18,17 @@
 
 //pthread_mutex_t cloud_data_gps_mutex = PTHREAD_MUTEX_INITIALIZER;
 
-struct gps_data_structure gps_data;
-    gps_data.latitude = 0.0;
-    gps_data.longitude = 0.0;
-    gps_data.gps_time = '';
-    gps_data.lat_cardinal_sign = '';
-    gps_data.long_cardinal_sign = '';
-    gps_data.pdop = 0.0;
-    gps_data.vdop = 0.0;
-    gps_data.hdop = 0.0;
-    gps_data.speed = 0;
+struct gps_data_structure gps_data = {
+    .latitude = 0.0;
+    .longitude = 0.0;
+    .gps_time = '';
+    .lat_cardinal_sign = '';
+    .long_cardinal_sign = '';
+    .pdop = 0.0;
+    .vdop = 0.0;
+    .hdop = 0.0;
+    .speed = 0;
+};
 
 void get_lat_log(double *latitude){
     int degrees;
@@ -65,20 +66,20 @@ void get_gps_data(char *nmea_data , struct gps_data_struct *gps_data){
     if (nmea_data[3] == 'G' && nmea_data[4]=='G' && nmea_data[5] == 'A'){
         /* Get UTC Time from GGA message */
         gga_data = strchr(nmea_data, COMMA);
-        gps_data->gps_time = gga_data + 1;
+        gps_data.gps_time = gga_data + 1;
 
         /* Get Latitude from GGA message */
         gga_data = strchr(gga_data + 1, COMMA);
-        gps_data->latitude = atof(gga_data + 1);
+        gps_data.latitude = atof(gga_data + 1);
         get_lat_log(&gps_data->latitude);
 
         /* Get Latitude cardinal sign from GGA message */
         gga_data = strchr(gga_data + 1, COMMA);
-        gps_data->lat_cardinal_sign = gga_data[1];
+        gps_data.lat_cardinal_sign = gga_data[1];
 
         /* Get Longitude from GGA message */
         gga_data = strchr(gga_data + 1, COMMA);
-        gps_data->longitude = atof(gga_data + 1);
+        gps_data.longitude = atof(gga_data + 1);
         get_lat_log(&gps_data->longitude);
 
         /* Get Longitude cardinal sign from GGA message */
