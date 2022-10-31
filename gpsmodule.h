@@ -21,7 +21,7 @@ void *read_from_gps(void *);
 
 void get_lat_log(double *);
 void get_dops(char **, char *);
-void get_gps_data(char * struct gps_data_struct *);
-void get_gps_param_by_position(char **,char*,unit8_t);
+void get_gps_data(char *, struct gps_data_struct *);
+void get_gps_param_by_position(char **,char*,uint8_t);
 
 #endif
