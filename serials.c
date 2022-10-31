@@ -63,7 +63,7 @@ void uart_reads(struct uart_device_struct *device, char *buf, size_t buf_len){
 }
 
 void uart_gps_write(struct uart_device_struct *device, const u_int8_t *string, u_int8_t size){
-    return write(devic->fd,string ,size);
+    return write(device->fd,string ,size);
 }
 void uart_stop(struct uart_device_struct *device){
     if(device->fd > 0){ 
