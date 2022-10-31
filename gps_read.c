@@ -32,7 +32,7 @@ struct gps_data_structure gps_data = {
 
 void get_lat_log(double *latitude){
     int degrees;
-    degrees =int(*latitude/HUNDRED);
+    degrees = (int(*latitude/HUNDRED));
     *latitude = degrees + (*latitude - degrees*HUNDRED)/SIXTY;
 }
 
@@ -70,16 +70,16 @@ void get_gps_data(char *nmea_data , struct gps_data_struct *gps_data){
 
         /* Get Latitude from GGA message */
         gga_data = strchr(gga_data + 1, COMMA);
-        gps_data.latitude = atof(gga_data + 1);
+        gps_data->latitude = atof(gga_data + 1);
         get_lat_log(&gps_data->latitude);
 
         /* Get Latitude cardinal sign from GGA message */
         gga_data = strchr(gga_data + 1, COMMA);
-        gps_data.lat_cardinal_sign = gga_data[1];
+        gps_data->lat_cardinal_sign = gga_data[1];
 
         /* Get Longitude from GGA message */
         gga_data = strchr(gga_data + 1, COMMA);
-        gps_data.longitude = atof(gga_data + 1);
+        gps_data->longitude = atof(gga_data + 1);
         get_lat_log(&gps_data->longitude);
 
         /* Get Longitude cardinal sign from GGA message */
