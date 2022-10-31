@@ -5,7 +5,7 @@
 #include <fcntl.h>
 #include <termios.h>
 #include "gpsmodule.h"
-#include "../serials/serial.h"
+#include "serial.h"
 #include "../main.h"
 
 #define MAX_READ_SIZE 80
