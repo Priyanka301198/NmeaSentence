@@ -6,7 +6,7 @@
 #include <termios.h>
 #include "gpsmodule.h"
 #include "serial.h"
-#include "../main.h"
+#include "main.h"
 
 #define MAX_READ_SIZE 80
 #define HUNDRED 100
