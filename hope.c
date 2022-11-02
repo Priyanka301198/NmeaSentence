@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
       parser = strstr(nmea_line, "$GPGGA");
       if (parser != NULL)
       {
-        printf("%s \r\n", nmea_line);
+        printf("|%s| \n", nmea_line);
         char *token = strtok(nmea_line, ",");
         int index = 0;
         while (token != NULL)
@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
 
 
 
-      printf("%s \r\n", nmea_line);
+      printf("|%s| \n", nmea_line);
       nmea_line = strtok(NULL, "\n");
     }
 
