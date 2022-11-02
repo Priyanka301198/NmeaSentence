@@ -26,16 +26,19 @@ int main(int argc, char **argv)
 	uint32_T Identifier;
 	uint8_T ReturnedBytes;
 	u_int8_t Mode[];
-	u_int8_t PID[];
-	u_int8_t A[];
-	u_int8_t B[];
-	u_int8_t C[];
-	u_int8_t D[];
+	u_int8_t *PID[];
+	u_int8_t *A;
+	u_int8_t *B;
+	u_int8_t *C;
+	u_int8_t *D;
 	real_T Timestamp[];
 	uint8_t RawData[];
-	uint32_T NewMessage[];
+	uint32_t NewMessage[];
 	const real_T sampleTime;
-    const int_T p_width0;
+        const int p_width0;
+	int *receivedBytes;
+        uint32_t msgIDRaw;
+        uint32_t msgID;
 
     printf("CAN Sockets Receive Demo\r\n");
 
