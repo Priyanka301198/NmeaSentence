@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 	struct timeval tv;
 	const u_int8_t *obd2PID;
 	const u_int8_t *obd2Mode;
-	uint32_t Identifier;
+	u_int32_t Identifier;
 	u_int8_t *ReturnedBytes;
 	u_int8_t *Mode;
 	u_int8_t *PID;
@@ -32,13 +32,13 @@ int main(int argc, char **argv)
 	u_int8_t *C;
 	u_int8_t *D;
 	real_t *Timestamp;
-	uint8_t *RawData;
-	uint32_t *NewMessage;
+	u_int8_t *RawData;
+	u_int32_t *NewMessage;
 	const real_t *sampleTime;
         const int p_width0;
 	int receivedBytes;
-        uint32_t msgIDRaw;
-        uint32_t msgID;
+        u_int32_t msgIDRaw;
+        u_int32_t msgID;
 
     printf("CAN Sockets Receive Demo\r\n");
 
@@ -107,7 +107,7 @@ int main(int argc, char **argv)
     }else{
         
         while (receivedBytes == sizeof(struct can_frame)) {
-            msgIDRaw    = (uint32_T)frame.can_id; 
+            msgIDRaw    = (u_int32_t)frame.can_id; 
             if (msgIDRaw >= 0x7E8 && msgIDRaw <= 0x7EF) 
 			{
                 ioctl(s, SIOCGIFINDEX, &tv);      
@@ -117,7 +117,7 @@ int main(int argc, char **argv)
                 Timestamp[0]    = tv.tv_sec + tv.tv_usec * 1e-6;
                 NewMessage[0]   = 1;
                 
-                ReturnedBytes[0] = (uint8_T)frame.data[0];
+                ReturnedBytes[0] = (u_int8_t)frame.data[0];
                 Mode[0] = (u_int8_t)frame.data[1];
                 PID[0] = (u_int8_t)frame.data[2];
                 A[0] = (u_int8_t)frame.data[3];
@@ -126,7 +126,7 @@ int main(int argc, char **argv)
                 D[0] = (u_int8_t)frame.data[6];
                 
                 for(i=0; i<8; i++) {
-                    RawData[i] = (uint8_T)frame.data[i];
+                    RawData[i] = (u_int8_t)frame.data[i];
                 }  
             } 
             // check again
