@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
 
 
 
-      printf("|%s| \n", nmea_line);
+      printf("%s \r\n", nmea_line);
       nmea_line = strtok(NULL, "\n");
     }
 
