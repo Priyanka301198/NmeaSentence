@@ -14,7 +14,8 @@
 
 int main(int argc, char **argv)
 {
-	int s, i; 
+	int s, i;
+	int interfaceNumber = 0;
 	int nbytes;
 	struct sockaddr_can addr;
 	struct ifreq ifr;
@@ -41,6 +42,9 @@ int main(int argc, char **argv)
         u_int32_t msgID;
 
     //printf("CAN Sockets Receive Demo\r\n");
+	
+	char interfaceName[7];
+        sprintf(interfaceName, "can%d\0", interfaceNumber);
 
 	if ((s = socket(PF_CAN, SOCK_RAW, CAN_RAW)) < 0) {
 		perror("Socket");
@@ -68,7 +72,7 @@ int main(int argc, char **argv)
 
 	setsockopt(s, SOL_CAN_RAW, CAN_RAW_FILTER, &rfilter, sizeof(rfilter));
 
-    nbytes = read(s, &frame, sizeof(struct can_frame));
+        nbytes = read(s, &frame, sizeof(struct can_frame));
 
 	if (nbytes < 0) {
 		perror("Read");
@@ -82,16 +86,16 @@ int main(int argc, char **argv)
 
 	printf("\r\n");
 
-    frameRequest.can_id = 0x7DF;
-    frameRequest.can_dlc = 8;
-    frameRequest.data[0] = 2;
-    frameRequest.data[1] = obd2Mode[0];
-    frameRequest.data[2] = obd2PID[0];
-    frameRequest.data[3] = 0;
-    frameRequest.data[4] = 0;
-    frameRequest.data[5] = 0;
-    frameRequest.data[6] = 0;
-    frameRequest.data[7] = 0;
+        frameRequest.can_id = 0x7DF;
+        frameRequest.can_dlc = 8;
+        frameRequest.data[0] = 2;
+        frameRequest.data[1] = obd2Mode[0];
+        frameRequest.data[2] = obd2PID[0];
+        frameRequest.data[3] = 0;
+        frameRequest.data[4] = 0;
+        frameRequest.data[5] = 0;
+        frameRequest.data[6] = 0;
+        frameRequest.data[7] = 0;
 
 	sprintf(frame.data, "Hello");
 
