@@ -22,14 +22,14 @@ int main(int argc, char **argv)
 	const uint8_T obd2Mode;
 	uint32_T Identifier;
 	uint8_T ReturnedBytes;
-	u_int8_T Mode[];
-	u_int8_T PID[];
-	u_int8_T A[];
-	u_int8_T B[];
-	u_int8_T C[];
-	u_int8_T D[];
+	u_int8_t Mode[];
+	u_int8_t PID[];
+	u_int8_t A[];
+	u_int8_t B[];
+	u_int8_t C[];
+	u_int8_t D[];
 	real_T Timestamp[];
-	uint8_T RawData[];
+	uint8_t RawData[];
 	uint32_T NewMessage[];
 	const real_T sampleTime;
     const int_T p_width0;
@@ -112,12 +112,12 @@ int main(int argc, char **argv)
                 NewMessage[0]   = 1;
                 
                 ReturnedBytes[0] = (uint8_T)frame.data[0];
-                Mode[0] = (u_int8_T)frame.data[1];
-                PID[0] = (u_int8_T)frame.data[2];
-                A[0] = (u_int8_T)frame.data[3];
-                B[0] = (u_int8_T)frame.data[4];
-                C[0] = (u_int8_T)frame.data[5];
-                D[0] = (u_int8_T)frame.data[6];
+                Mode[0] = (u_int8_t)frame.data[1];
+                PID[0] = (u_int8_t)frame.data[2];
+                A[0] = (u_int8_t)frame.data[3];
+                B[0] = (u_int8_t)frame.data[4];
+                C[0] = (u_int8_t)frame.data[5];
+                D[0] = (u_int8_t)frame.data[6];
                 
                 for(i=0; i<8; i++) {
                     RawData[i] = (uint8_T)frame.data[i];
