@@ -67,9 +67,7 @@ int main(int argc, char **argv)
 
 	rfilter[0].can_id   = 0x7DF;
 	rfilter[0].can_mask = 0xFF0;
-	//rfilter[1].can_id   = 0x200;
-	//rfilter[1].can_mask = 0x700;
-
+	
 	setsockopt(s, SOL_CAN_RAW, CAN_RAW_FILTER, &rfilter, sizeof(rfilter));
 
         nbytes = read(s, &frame, sizeof(struct can_frame));
