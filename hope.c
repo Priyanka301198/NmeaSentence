@@ -74,18 +74,20 @@ int main(int argc, char *argv[])
       parser = strstr(nmea_line, "$GPGGA");
       if (parser != NULL)
       {
-        //printf("%s \r\n", nmea_line);
+        printf("%s \r\n", nmea_line);
         char *token = strtok(nmea_line, ",");
         int index = 0;
         while (token != NULL)
         {
             if(index==0){
+              printf("token: %s\n", token);
                 index++;
                 continue;
             }
                 
           if (index == 1)
           {
+            printf("token: %s\n", token);
             latitude = atof(token);
             printf("found latitude: %s %f\n", token, latitude);
             index++;
@@ -93,6 +95,7 @@ int main(int argc, char *argv[])
           }
           if (index == 2)
           {
+            printf("token: %s\n", token);
             longitude = atof(token);
             printf("found longitude: %s %f\n", token, longitude);
             index++;
