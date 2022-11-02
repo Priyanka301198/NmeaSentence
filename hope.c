@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
     while (nmea_line != NULL)
     {
 
-      parser = strstr(nmea_line, "$GPRMC");
+      parser = strstr(nmea_line, "$GGPA");
       if (parser != NULL)
       {
         printf("%s \r\n", nmea_line);
@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
         }
       }
 
-      parser = strstr(nmea_line, "$GPGGA");
+      parser = strstr(nmea_line, "$GPRMC");
       if (parser != NULL)
       {
         printf("|%s| \n", nmea_line);
