@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 	real_t *Timestamp;
 	u_int8_t *RawData;
 	u_int32_t *NewMessage;
-	const real_t *sampleTime;
+	const int_t *sampleTime;
         const int p_width0;
 	int receivedBytes;
         u_int32_t msgIDRaw;
