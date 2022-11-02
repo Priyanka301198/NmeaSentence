@@ -40,7 +40,7 @@ int main(int argc, char **argv)
         u_int32_t msgIDRaw;
         u_int32_t msgID;
 
-    printf("CAN Sockets Receive Demo\r\n");
+    //printf("CAN Sockets Receive Demo\r\n");
 
 	if ((s = socket(PF_CAN, SOCK_RAW, CAN_RAW)) < 0) {
 		perror("Socket");
@@ -93,7 +93,7 @@ int main(int argc, char **argv)
     frameRequest.data[6] = 0;
     frameRequest.data[7] = 0;
 
-	//sprintf(frame.data, "Hello");
+	sprintf(frame.data, "Hello");
 
 	if (write(s, &frame, sizeof(struct can_frame)) != sizeof(struct can_frame)) {
 		perror("Write");
