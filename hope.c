@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 
   signal(SIGINT, sig_handler);
 
-  fd = open("/dev/ttyACM2", O_RDWR | O_NONBLOCK);
+  fd = open("/dev/ttyUSB0", O_RDWR | O_NONBLOCK);
   if (fd >= 0)
   {
     tcgetattr(fd, &newt);
