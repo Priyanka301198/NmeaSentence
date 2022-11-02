@@ -17,6 +17,7 @@ int main(int argc, char **argv)
 	struct sockaddr_can addr;
 	struct ifreq ifr;
 	struct can_frame frame;
+	struct can_frame frameRequest;
 	const uint8_T obd2PID;
 	const uint8_T obd2Mode;
 	uint32_T Identifier;
@@ -54,7 +55,7 @@ int main(int argc, char **argv)
 
     struct can_filter rfilter[1];
 
-	rfilter[0].can_id   = 0x550;
+	rfilter[0].can_id   = 0x7DF;
 	rfilter[0].can_mask = 0xFF0;
 	//rfilter[1].can_id   = 0x200;
 	//rfilter[1].can_mask = 0x700;
@@ -75,16 +76,16 @@ int main(int argc, char **argv)
 
 	printf("\r\n");
 
-    frame.can_id = 0x555;
-	frame.can_dlc = 5;
-	frame.data[0] = 2;
-    frame.data[1] = obd2Mode[0];
-    frame.data[2] = obd2PID[0];
-    frame.data[3] = 0;
-    frame.data[4] = 0;
-    frame.data[5] = 0;
-    frame.data[6] = 0;
-    frame.data[7] = 0;
+    frameRequest.can_id = 0x7DF;
+    frameRequest.can_dlc = 8;
+    frameRequest.data[0] = 2;
+    frameRequest.data[1] = obd2Mode[0];
+    frameRequest.data[2] = obd2PID[0];
+    frameRequest.data[3] = 0;
+    frameRequest.data[4] = 0;
+    frameRequest.data[5] = 0;
+    frameRequest.data[6] = 0;
+    frameRequest.data[7] = 0;
 
 	//sprintf(frame.data, "Hello");
 
