@@ -68,36 +68,45 @@ int main(int argc, char *argv[])
 
     nmea_line = strtok(read_buffer, "\n");
 
-    while (nmea_line != NULL)
+    if (nmea_line != NULL)
     {
 
-      parser = strstr(nmea_line, "$GGPA");
+      parser = strstr(nmea_line, "$GPGGA");
       if (parser != NULL)
       {
-        printf("%s \r\n", nmea_line);
+        //printf("%s \r\n", nmea_line);
         char *token = strtok(nmea_line, ",");
         int index = 0;
         while (token != NULL)
         {
-          if (index == 3)
+            if(index==0){
+                index++;
+                continue;
+            }
+                
+          if (index == 1)
           {
             latitude = atof(token);
             printf("found latitude: %s %f\n", token, latitude);
+            index++;
+            continue;
           }
-          if (index == 5)
+          if (index == 2)
           {
             longitude = atof(token);
             printf("found longitude: %s %f\n", token, longitude);
+            index++;
+            continue;
           }
-          token = strtok(NULL, ",");
-          index++;
+          //token = strtok(NULL, ",");
+          //index++;
         }
       }
 
-      parser = strstr(nmea_line, "$GPRMC");
-      if (parser != NULL)
-      {
-        printf("|%s| \n", nmea_line);
+      //parser = strstr(nmea_line, "$GPGGA");
+      //if (nmea_line[3] == 'G' && nmea_line[4]=='G' && nmea_line[5] == 'A')
+      //{
+        /*printf("|%s| \n", nmea_line);
         char *token = strtok(nmea_line, ",");
         int index = 0;
         while (token != NULL)
@@ -110,13 +119,15 @@ int main(int argc, char *argv[])
           token = strtok(NULL, ",");
           index++;
         }
-
-      }
-
+        printf("|%s| \n",latitude);
 
 
-      printf("|%s| \n", nmea_line);
-      nmea_line = strtok(NULL, "\n");
+      }*/
+
+
+
+      //printf("|%s| \n", nmea_line);
+      //nmea_line = strtok(NULL, "\n");
     }
 
     usleep(500000);
