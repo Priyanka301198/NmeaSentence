@@ -44,7 +44,8 @@ int main(int argc, char *argv[])
     newt.c_iflag &= ~(IXON | IXOFF | IXANY); 
     newt.c_oflag = 0;               
 
-    newt.c_cflag |= (CLOCAL | CREAD);               
+    newt.c_cflag |= (CLOCAL | CREAD); 
+    newt.c_cflag = B9600 | CS8 | CREAD
     newt.c_cflag |= CS8;                       
     newt.c_cflag &= ~(PARENB | PARODD);         
     newt.c_cflag &= ~CSTOPB;                   
@@ -53,7 +54,7 @@ int main(int argc, char *argv[])
 
     newt.c_cc[VMIN]  = 0; 
     newt.c_cc[VTIME] = 0; 
-    cfsetispeed(&newt,9600);
+    //cfsetispeed(&newt,9600);
     //cfsetospeed(&newt,9600);
     tcsetattr(fd, TCSANOW, &newt);
 
