@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 	struct timeval tv;
 	const u_int8_t *obd2PID;
 	const u_int8_t *obd2Mode;
-	u_int32_t Identifier;
+	u_int32_t *Identifier;
 	u_int8_t *ReturnedBytes;
 	u_int8_t *Mode;
 	u_int8_t *PID;
