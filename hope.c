@@ -68,8 +68,12 @@ int main(int argc, char *argv[])
     char read_buffer[80];
     read(fd, &read_buffer,80);
     //printf("|%s|", r_buf);
+    
+    printf("Buffer: %s",read_buffer);
 
-    nmea_line = strtok(read_buffer, "\n");
+    //nmea_line = strtok(read_buffer, "\n");
+    nmea_line = read_buffer;
+    printf("NMEA line after assigning: %s",nmea_line);
 
     if (nmea_line != NULL)
     {
