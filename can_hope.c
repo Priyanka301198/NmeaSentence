@@ -47,8 +47,8 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-    strcpy(ifr.ifr_name, "vcan0" );
-	ioctl(s, SIOCGIFINDEX, &ifr);
+        strcpy(ifr.ifr_name, "vcan0" );
+	ioctl(s, SIOCGIFINDEX, &tv);
 
 	memset(&addr, 0, sizeof(addr));
 	addr.can_family = AF_CAN;
@@ -110,7 +110,7 @@ int main(int argc, char **argv)
             msgIDRaw    = (uint32_T)frame.can_id; 
             if (msgIDRaw >= 0x7E8 && msgIDRaw <= 0x7EF) 
 			{
-                ioctl(s, SIOCGSTAMP, &tv);      
+                ioctl(s, SIOCGIFINDEX, &tv);      
                 msgID       = msgIDRaw & maskId;    
 
                 Identifier[0]   = msgID;
