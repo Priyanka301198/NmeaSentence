@@ -10,6 +10,8 @@
 #include <linux/can.h>
 #include <linux/can/raw.h>
 
+#define maskId          0x1FFFFFFFU //Data
+
 int main(int argc, char **argv)
 {
 	int s, i; 
@@ -18,6 +20,7 @@ int main(int argc, char **argv)
 	struct ifreq ifr;
 	struct can_frame frame;
 	struct can_frame frameRequest;
+	struct timeval tv;
 	const uint8_T obd2PID;
 	const uint8_T obd2Mode;
 	uint32_T Identifier;
@@ -104,7 +107,7 @@ int main(int argc, char **argv)
             msgIDRaw    = (uint32_T)frame.can_id; 
             if (msgIDRaw >= 0x7E8 && msgIDRaw <= 0x7EF) 
 			{
-                ioctl(socket0, SIOCGSTAMP, &tv);      
+                ioctl(s, SIOCGSTAMP, &tv);      
                 msgID       = msgIDRaw & maskId;    
 
                 Identifier[0]   = msgID;
