@@ -31,10 +31,10 @@ int main(int argc, char **argv)
 	u_int8_t *B;
 	u_int8_t *C;
 	u_int8_t *D;
-	real_t *Timestamp;
+	int *Timestamp;
 	u_int8_t *RawData;
 	u_int32_t *NewMessage;
-	const int_t *sampleTime;
+	const int *sampleTime;
         const int p_width0;
 	int receivedBytes;
         u_int32_t msgIDRaw;
