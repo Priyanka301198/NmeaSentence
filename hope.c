@@ -62,8 +62,8 @@ int main(int argc, char *argv[])
   while(end_of_loop == 0)
   {
 
-    char read_buffer[1000];
-    read(fd, &read_buffer,1000);
+    char read_buffer[80];
+    read(fd, &read_buffer,80);
     //printf("|%s|", r_buf);
 
     nmea_line = strtok(read_buffer, "\n");
