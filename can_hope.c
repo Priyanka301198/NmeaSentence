@@ -94,7 +94,7 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-	receivedBytes = read(socket0, &frame, sizeof(struct can_frame));
+	receivedBytes = read(s, &frame, sizeof(struct can_frame));
 
 	if (receivedBytes != sizeof(struct can_frame) ) {
         NewMessage[0] = 0;
@@ -124,7 +124,7 @@ int main(int argc, char **argv)
                 }  
             } 
             // check again
-            receivedBytes = recv(socket0, &frame, sizeof(struct can_frame));
+            receivedBytes = read(s, &frame, sizeof(struct can_frame));
         }
     }
 
