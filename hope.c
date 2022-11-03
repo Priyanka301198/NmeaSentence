@@ -73,9 +73,10 @@ int main(int argc, char *argv[])
     while (nmea_line != NULL)
     {
       printf("\nNMEA:\n%s",nmea_line);
+      char utc_time = NULL;
       if (nmea_line[3] == 'G' && nmea_line[4]=='G' && nmea_line[5] == 'A')
     {
-      char utc_time = strchr(nmea_line,",");
+      utc_time = strchr(nmea_line,",");
       float time = utc_time + 1;
       printf("Found Time %f",time);
 
