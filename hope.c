@@ -67,10 +67,10 @@ int main(int argc, char *argv[])
     read(fd, &read_buffer,80);
     //printf("|%s|", r_buf);
     printf("\n%s\n",read_buffer);
-    nmea_line = strchr(read_buffer, "\n");
+    nmea_line = strtok(read_buffer, "\n");
     //nmea_line = read_buffer;
     printf("NMEA:\n%s",nmea_line);
-    if (nmea_line != NULL)
+    while (nmea_line != NULL)
     {
       if (nmea_line[3] == 'G' && nmea_line[4]=='G' && nmea_line[5] == 'A')
     {
