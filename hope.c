@@ -45,7 +45,8 @@ int main(int argc, char *argv[])
     newt.c_oflag = 0;               
 
     newt.c_cflag |= (CLOCAL | CREAD);               
-    newt.c_cflag |= CS8;                       
+    newt.c_cflag |= CS8;   
+    newt.c_cflag |= B9600;
     newt.c_cflag &= ~(PARENB | PARODD);         
     newt.c_cflag &= ~CSTOPB;                   
 
