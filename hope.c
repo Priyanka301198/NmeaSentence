@@ -80,9 +80,9 @@ int main(int argc, char *argv[])
       float utc_time->time = utc_time + 1;
       printf("Found Time %f",time);
 
-      char latitude = strchr(utc_time+1,",");
+      /*char latitude = strchr(utc_time+1,",");
       float lat = utc_time + 1;
-      printf("Found Latitude %f",lat);
+      printf("Found Latitude %f",lat);*/
 
       /*lat_card = strchr(utc_time+1,",");
       if (lat_card[1]=='S' || lat_card[1]=='s'){
