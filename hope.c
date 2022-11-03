@@ -100,7 +100,7 @@ int main(int argc, char *argv[])
             index++;
             continue;
           }
-          if (index == 2)
+          if (index == 3)
           {
             printf("token: %s\n", token);
             longitude = atof(token);
