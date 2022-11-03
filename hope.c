@@ -73,11 +73,11 @@ int main(int argc, char *argv[])
     while (nmea_line != NULL)
     {
       printf("\nNMEA:\n%s",nmea_line);
-      char utc_time = NULL;
+      char *utc_time;
       if (nmea_line[3] == 'G' && nmea_line[4]=='G' && nmea_line[5] == 'A')
     {
       utc_time = strchr(nmea_line,",");
-      float time = utc_time + 1;
+      float utc_time->time = utc_time + 1;
       printf("Found Time %f",time);
 
       char latitude = strchr(utc_time+1,",");
