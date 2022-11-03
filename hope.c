@@ -72,13 +72,14 @@ int main(int argc, char *argv[])
     {
       if (nmea_line[3] == 'G' && nmea_line[4]=='G' && nmea_line[5] == 'A')
     {
-      float utc_time = strchr(nmea_line,",");
-      //time = utc_time + 1;
-      printf("Found Time %f",utc_time);
+      char utc_time = strchr(nmea_line,",");
+      float time = utc_time + 1;
+      printf("Found Time %f",time);
 
-      float latitude = strchr(utc_time+1,",");
-      //time = utc_time + 1;
-      printf("Found Latitude %f",latitude);
+      char latitude = strchr(utc_time+1,",");
+      float lat = utc_time + 1;
+      printf("Found Latitude %f",lat);
+
 
       /*lat_card = strchr(utc_time+1,",");
       if (lat_card[1]=='S' || lat_card[1]=='s'){
