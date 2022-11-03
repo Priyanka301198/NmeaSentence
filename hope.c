@@ -69,9 +69,10 @@ int main(int argc, char *argv[])
     printf("\n%s\n",read_buffer);
     nmea_line = strtok(read_buffer, "$");
     //nmea_line = read_buffer;
-    printf("NMEA:\n%s",nmea_line);
+    
     while (nmea_line != NULL)
     {
+      printf("\nNMEA:\n%s",nmea_line);
       if (nmea_line[3] == 'G' && nmea_line[4]=='G' && nmea_line[5] == 'A')
     {
       char utc_time = strchr(nmea_line,",");
