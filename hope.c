@@ -44,8 +44,7 @@ int main(int argc, char *argv[])
     newt.c_iflag &= ~(IXON | IXOFF | IXANY); 
     newt.c_oflag = 0;               
 
-    newt.c_cflag |= (CLOCAL | CREAD); 
-    newt.c_cflag = B9600 | CS8 | CREAD;
+    newt.c_cflag |= (CLOCAL | CREAD);               
     newt.c_cflag |= CS8;                       
     newt.c_cflag &= ~(PARENB | PARODD);         
     newt.c_cflag &= ~CSTOPB;                   
@@ -54,8 +53,6 @@ int main(int argc, char *argv[])
 
     newt.c_cc[VMIN]  = 0; 
     newt.c_cc[VTIME] = 0; 
-    //cfsetispeed(&newt,9600);
-    //cfsetospeed(&newt,9600);
     tcsetattr(fd, TCSANOW, &newt);
 
 
@@ -68,33 +65,41 @@ int main(int argc, char *argv[])
     char read_buffer[80];
     read(fd, &read_buffer,80);
     //printf("|%s|", r_buf);
-    
-    printf("Buffer: %s",read_buffer);
 
-    //nmea_line = strtok(read_buffer, "\n");
-    nmea_line = read_buffer;
-    printf("NMEA line after assigning: %s",nmea_line);
+    nmea_line = strchr(read_buffer, "\n");
 
     if (nmea_line != NULL)
     {
+      if (nmea_line[3] == 'G' && nmea_line[4]=='G' && nmea_line[5] == 'A')
+    {
+      float utc_time = strchr(nmea_line,",");
+      //time = utc_time + 1;
+      printf("Found Time %f",utc_time);
 
-      parser = strstr(nmea_line, "$GNRMC");
+      float latitude = strchr(utc_time+1,",");
+      //time = utc_time + 1;
+      printf("Found Latitude %f",latitude);
+
+      /*lat_card = strchr(utc_time+1,",");
+      if (lat_card[1]=='S' || lat_card[1]=='s'){
+
+      }*/
+    }
+      /*parser = strstr(nmea_line, "$GPGGA");
       if (parser != NULL)
       {
-        printf("%s \r\n", nmea_line);
+        //printf("%s \r\n", nmea_line);
         char *token = strtok(nmea_line, ",");
         int index = 0;
         while (token != NULL)
         {
             if(index==0){
-              printf("token: %s\n", token);
                 index++;
                 continue;
             }
                 
           if (index == 1)
           {
-            printf("token: %s\n", token);
             latitude = atof(token);
             printf("found latitude: %s %f\n", token, latitude);
             index++;
@@ -102,7 +107,6 @@ int main(int argc, char *argv[])
           }
           if (index == 2)
           {
-            printf("token: %s\n", token);
             longitude = atof(token);
             printf("found longitude: %s %f\n", token, longitude);
             index++;
@@ -145,7 +149,7 @@ int main(int argc, char *argv[])
   }
 
   close(fd);
-
+  
   return 0;
 
   }
