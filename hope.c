@@ -66,8 +66,9 @@ int main(int argc, char *argv[])
     read(fd, &read_buffer,80);
     //printf("|%s|", r_buf);
 
-    nmea_line = strchr(read_buffer, "\n");
-
+    //nmea_line = strchr(read_buffer, "\n");
+    nmea_line = read_buffer;
+    printf("NMEA:\n%s",nmea_line);
     if (nmea_line != NULL)
     {
       if (nmea_line[3] == 'G' && nmea_line[4]=='G' && nmea_line[5] == 'A')
@@ -79,7 +80,6 @@ int main(int argc, char *argv[])
       char latitude = strchr(utc_time+1,",");
       float lat = utc_time + 1;
       printf("Found Latitude %f",lat);
-
 
       /*lat_card = strchr(utc_time+1,",");
       if (lat_card[1]=='S' || lat_card[1]=='s'){
