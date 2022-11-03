@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
     char read_buffer[80];
     read(fd, &read_buffer,80);
     //printf("|%s|", r_buf);
-
+    printf("\n%s\n",read_buffer);
     nmea_line = strchr(read_buffer, "\n");
     //nmea_line = read_buffer;
     printf("NMEA:\n%s",nmea_line);
