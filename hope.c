@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
     if (nmea_line != NULL)
     {
 
-      parser = strstr(nmea_line, "$GNRMC");
+      parser = strstr(nmea_line, "$GNGGA");
       if (parser != NULL)
       {
         printf("%s \r\n", nmea_line);
