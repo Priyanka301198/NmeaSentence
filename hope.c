@@ -9,6 +9,7 @@
 #include <termios.h>
 #include <unistd.h>
 #include <string.h>
+//#include <pthread.h>
 
 #define COMMA 0x2C
 
@@ -212,3 +213,9 @@ int main(int argc, char *argv[])
     return -1;
   }
 }
+
+//int main(){
+  //pthread_create(&ptid, NULL, &gps, NULL);
+  //gps();
+  //vcan();
+//}
