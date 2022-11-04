@@ -75,14 +75,14 @@ int main(int argc, char *argv[])
       //printf("\nNMEA:\n%s",nmea_line);
       char utc_time = NULL;
       print("\nNMEA Sentence from GPS module %s\n", nmea_line);
-      char test_nmea = $GPGGA,053125.00,1731.99230,N,07830.46644,E,1,05,2.46,414.3,M,-73.9,M,,*76;
+      char test_nmea = '$GPGGA,053125.00,1731.99230,N,07830.46644,E,1,05,2.46,414.3,M,-73.9,M,,*76';
       if (test_nmea[3] == 'G' && test_nmea[4]=='G' && test_nmea[5] == 'A')
      {
       utc_time = strchr(test_nmea,",");
       float time = utc_time + 1;
       printf("Found Time %f",time);
 
-      char latitude = strchr(utc_time+1,",");
+      char latitude = strchr(test_nmea+1,",");
       float lat = utc_time + 1;
       printf("Found Latitude %f",lat);
 
