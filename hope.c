@@ -90,11 +90,11 @@ int main(int argc, char *argv[])
       lat = ((lat/100)+(lat - (lat/100))/60);
       printf("Found Latitude %f\n",lat);
         
-      char *direction = strchr(utc_time+1,COMMA);
+      char *direction = strchr(latitude+1,COMMA);
       char *xyz = (utc_time + 1);
       //printf("Found Time %s\n",time);
         
-      char *longitude = strchr(utc_time+1,COMMA);
+      char *longitude = strchr(direction+1,COMMA);
       float longi = atof(longitude + 1);
       //longi = ((longi/100)+(longi - (longi/100))/60);
       printf("Found longitude %f\n",longi);
