@@ -10,6 +10,8 @@
 #include <unistd.h>
 #include <string.h>
 
+#define COMMA 0x2C;
+
 int fd = -1;
 int end_of_loop= 0;
 
@@ -79,12 +81,12 @@ int main(int argc, char *argv[])
       printf("\n%s\n",test_nmea);
       if (test_nmea[3] == 'G' && test_nmea[4]=='G' && test_nmea[5] == 'A')
      {
-      utc_time = strchr(test_nmea,",");
-      float time = utc_time + 1;
-      printf("Found Time %f",time);
+     utc_time = strchr(test_nmea,COMMA);
+      char *time = utc_time + 1;
+      printf("Found Time %s",time);
 
-      char *latitude = strchr(test_nmea+1,",");
-      float lat = utc_time + 1;
+      char *latitude = strchr(utc_time+1,COMMA);
+      float lat = atof(latitude + 1);
       printf("Found Latitude %f",lat);
 
       /*lat_card = strchr(utc_time+1,",");
