@@ -32,8 +32,8 @@ int main(int argc, char *argv[])
   char *nmea_line;
   char *parser;
   double latitude;
-  float longitude;
-  float altitude;
+  double longitude;
+  //float altitude;
 
   signal(SIGINT, sig_handler);
 
