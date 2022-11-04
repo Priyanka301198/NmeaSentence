@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
       float lat = atof(latitude + 1);
       printf("Found Latitude %f\n",lat);
         
-      char *longitude = strchr(latitude+2,COMMA);
+      char *longitude = strchr(latitude+1,COMMA);
       float longi = atof(longitude + 1);
       printf("Found longitude %f\n",longi);
 
