@@ -72,11 +72,13 @@ int main(int argc, char *argv[])
     
     while (nmea_line != NULL)
     {
-      printf("\nNMEA:\n%s",nmea_line);
+      //printf("\nNMEA:\n%s",nmea_line);
       char utc_time = NULL;
-      if (nmea_line[3] == 'G' && nmea_line[4]=='G' && nmea_line[5] == 'A')
-    {
-      utc_time = strchr(nmea_line,",");
+      print("\nNMEA Sentence from GPS module %s\n", nmea_line);
+      char test_nmea = $GPGGA,053125.00,1731.99230,N,07830.46644,E,1,05,2.46,414.3,M,-73.9,M,,*76;
+      if (test_nmea[3] == 'G' && test_nmea[4]=='G' && test_nmea[5] == 'A')
+     {
+      utc_time = strchr(test_nmea,",");
       float time = utc_time + 1;
       printf("Found Time %f",time);
 
@@ -155,6 +157,7 @@ int main(int argc, char *argv[])
   
   return 0;
 
+  }
   }
   else
   {
