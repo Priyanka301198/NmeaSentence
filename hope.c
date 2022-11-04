@@ -26,8 +26,6 @@ void sig_handler(int sig)
   }
 }
 
-
-
 int main(int argc, char *argv[])
 {
   struct termios newt;
@@ -58,8 +56,6 @@ int main(int argc, char *argv[])
     newt.c_cc[VMIN]  = 0; 
     newt.c_cc[VTIME] = 0; 
     tcsetattr(fd, TCSANOW, &newt);
-
-
 
   usleep(100000);
 
@@ -196,15 +192,10 @@ int main(int argc, char *argv[])
       //printf("|%s| \n", nmea_line);
       nmea_line = strtok(NULL, "$");
     }
-
     usleep(500000);
-
   }
-
-  close(fd);
-  
+  close(fd);  
   return 0;
-
   }
   }
   else
