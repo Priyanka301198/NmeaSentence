@@ -89,9 +89,9 @@ int main(int argc, char *argv[])
       float lat = atof(latitude + 1);
       printf("Found Latitude %f\n",lat);
         
-      char *longitude = strchr(utc_time+2,COMMA);
+      char *longitude = strchr(utc_time+1,COMMA);
       float longi = atof(longitude + 1);
-      printf("Found Latitude %f\n",longi);
+      printf("Found longitude %f\n",longi);
 
       /*lat_card = strchr(utc_time+1,",");
       if (lat_card[1]=='S' || lat_card[1]=='s'){
