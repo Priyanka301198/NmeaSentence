@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
 
   usleep(100000);
 
-  while(end_of_loop == 0)
+  do
   {
 
     char read_buffer[80];
@@ -196,7 +196,7 @@ int main(int argc, char *argv[])
   }
   close(fd);  
   return 0;
-  }
+  }while(end_of_loop == 0);
   }
   else
   {
