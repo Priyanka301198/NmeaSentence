@@ -208,6 +208,6 @@ int gps(int argc, char *argv[])
 int main(){
     pthread_t readfromgps;
     pthread_create(&readfromgps, NULL,&gps, NULL);
-    gps();
+    &gps();
   //vcan();
 }
