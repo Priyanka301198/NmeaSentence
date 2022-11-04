@@ -165,7 +165,7 @@ int main(int argc, char *argv[])
         
       char *speed1 = strchr(direction2,COMMA);
       float speed = 0.504;
-      printf("Found Speed %f\n",speed);
+      printf("Found Speed in knots %f\n",speed);
         
       
         
