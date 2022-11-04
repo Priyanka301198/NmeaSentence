@@ -9,14 +9,14 @@
 #include <termios.h>
 #include <unistd.h>
 #include <string.h>
-//#include <pthread.h>
+#include <pthread.h>
 
 #define COMMA 0x2C
 
 int fd = -1;
 int end_of_loop= 0;
 
-void sig_handler(int sig)
+void sig_handler(int sig)     //if gps is stopped by self
 {
   if(sig == SIGINT)
   {
@@ -26,9 +26,9 @@ void sig_handler(int sig)
   }
 }
 
-int main(int argc, char *argv[])
+int gps(int argc, char *argv[])
 {
-  struct termios newt;
+  struct termios newt;                         //declarations of output variables
   char *nmea_line;
   char *parser;
   double latitude;
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 
   signal(SIGINT, sig_handler);
 
-  fd = open("/dev/ttyUSB0", O_RDWR | O_NONBLOCK);
+  fd = open("/dev/ttyUSB0", O_RDWR | O_NONBLOCK);           //tried to open serial port
   if (fd >= 0)
   {
     tcgetattr(fd, &newt);
@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
     read(fd, &read_buffer,80);
     //printf("|%s|", r_buf);
     printf("\n%s\n",read_buffer);
-    nmea_line = strtok(read_buffer, "$");
+    nmea_line = strtok(read_buffer, "$");            //tried to read nmea sentences
     //nmea_line = read_buffer;
     
    // while (nmea_line != NULL)
@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
      // printf("\nNMEA Sentence from GPS module %s\n", nmea_line);
       char *test_nmea = "$GPGGA,053125.00,1731.99230,N,07830.46644,E,1,05,2.46,414.3,M,-73.9,M,,*76";
       printf("\n%s\n",test_nmea);
-      if (test_nmea[3] == 'G' && test_nmea[4]=='G' && test_nmea[5] == 'A')
+      if (test_nmea[3] == 'G' && test_nmea[4]=='G' && test_nmea[5] == 'A')    //checked functionality
      {
       utc_time = strchr(test_nmea,COMMA);
       char *time = (utc_time + 1);
@@ -205,8 +205,9 @@ int main(int argc, char *argv[])
   }
 }
 
-//int main(){
-  //pthread_create(&ptid, NULL, &gps, NULL);
-  //gps();
+int main(){
+    pthread_t readfromgps;
+    pthread_create(&readfromgps, NULL,&gps, NULL);
+    gps();
   //vcan();
-//}
+}
