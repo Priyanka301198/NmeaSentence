@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include <string.h>
 
-#define COMMA 0x2C;
+#define COMMA 0x2C
 
 int fd = -1;
 int end_of_loop= 0;
