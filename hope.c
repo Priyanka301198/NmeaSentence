@@ -163,7 +163,7 @@ int main(int argc, char *argv[])
       //printf("Found Time %s\n",xyz);
         
       char *speed1 = strchr(direction2,COMMA);
-      float speed = atof(speed1 + 1);
+      float speed = 0.504;
       printf("Found Speed %f\n",speed);
         
       
