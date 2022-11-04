@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
       //printf("\nNMEA:\n%s",nmea_line);
       char *utc_time = NULL;
      // printf("\nNMEA Sentence from GPS module %s\n", nmea_line);
-      char *test_nmea = '$GPGGA,053125.00,1731.99230,N,07830.46644,E,1,05,2.46,414.3,M,-73.9,M,,*76';
+      char *test_nmea = "$GPGGA,053125.00,1731.99230,N,07830.46644,E,1,05,2.46,414.3,M,-73.9,M,,*76";
       printf("\n%s\n",test_nmea);
       if (test_nmea[3] == 'G' && test_nmea[4]=='G' && test_nmea[5] == 'A')
      {
