@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
         
       char *longitude = strchr(utc_time+1,COMMA);
       float longi = atof(longitude + 1);
-      longi = ((longi/100)+(longi - (longi/100))/60);
+      //longi = ((longi/100)+(longi - (longi/100))/60);
       printf("Found longitude %f\n",longi);
 
       /*lat_card = strchr(utc_time+1,",");
