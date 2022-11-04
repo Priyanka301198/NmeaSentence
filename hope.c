@@ -73,9 +73,9 @@ int main(int argc, char *argv[])
     while (nmea_line != NULL)
     {
       printf("\nNMEA:\n%s",nmea_line);
-      //char utc_time = NULL;
-      //if (nmea_line[3] == 'G' && nmea_line[4]=='G' && nmea_line[5] == 'A')
-    */{
+      char utc_time = NULL;
+      if (nmea_line[3] == 'G' && nmea_line[4]=='G' && nmea_line[5] == 'A')
+    {
       utc_time = strchr(nmea_line,",");
       float time = utc_time + 1;
       printf("Found Time %f",time);
@@ -84,11 +84,11 @@ int main(int argc, char *argv[])
       float lat = utc_time + 1;
       printf("Found Latitude %f",lat);
 
-      lat_card = strchr(utc_time+1,",");
+      /*lat_card = strchr(utc_time+1,",");
       if (lat_card[1]=='S' || lat_card[1]=='s'){
 
       }*/
-      parser = strstr(nmea_line, "$GPGGA");
+      /*parser = strstr(nmea_line, "$GPGGA");
       if (parser != NULL)
       {
         //printf("%s \r\n", nmea_line);
@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
           //token = strtok(NULL, ",");
           //index++;
         }
-      }
+      }*/
 
       //parser = strstr(nmea_line, "$GPGGA");
       //if (nmea_line[3] == 'G' && nmea_line[4]=='G' && nmea_line[5] == 'A')
