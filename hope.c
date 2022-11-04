@@ -137,11 +137,11 @@ int main(int argc, char *argv[])
       char *utc_time1 = NULL;
      // printf("\nNMEA Sentence from GPS module %s\n", nmea_line);
       char *test_nmea1 = "$GPRMC,053126.00,A,1731.99205,N,07830.46658,E,0.504,,260722,,,A*77";
-      printf("\n%s\n",test_nmea);
+      printf("\n%s\n",test_nmea1);
       if (test_nmea1[3] == 'R' && test_nmea1[4]=='M' && test_nmea1[5] == 'C')
      {
       utc_time1 = strchr(test_nmea1,COMMA);
-      char *time = (utc_time + 1);
+      char *time = (utc_time1 + 1);
       //printf("Found Time %s\n",time);
 
       char *latitude1 = strchr(utc_time1+1,COMMA);
@@ -151,11 +151,11 @@ int main(int argc, char *argv[])
         
       char *direction1 = strchr(latitude1+1,COMMA);
       char *xyz = (utc_time1 + 1);
-      //printf("Found Time %s\n",time);
+      //printf("Found Time %s\n",xyz);
         
       char *longitude1 = strchr(direction1+1,COMMA);
       float longi1 = atof(longitude1 + 1);
-      longi = ((longi/100)+(longi - (longi/100))/60);
+      longi1 = ((longi1/100)+(longi1 - (longi1/100))/60);
       printf("Found longitude %f\n",longi1);
       }
       //parser = strstr(nmea_line, "$GPGGA");
