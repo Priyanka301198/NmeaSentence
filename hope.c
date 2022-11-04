@@ -26,7 +26,7 @@ void sig_handler(int sig)     //if gps is stopped by self
   }
 }
 
-int gps(int argc, char *argv[])
+int *gps(int argc, char *argv[])
 {
   struct termios newt;                         //declarations of output variables
   char *nmea_line;
