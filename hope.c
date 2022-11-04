@@ -9,7 +9,7 @@
 #include <termios.h>
 #include <unistd.h>
 #include <string.h>
-#include <pthread.h>
+//#include <pthread.h>
 
 #define COMMA 0x2C
 
@@ -26,7 +26,7 @@ void sig_handler(int sig)     //if gps is stopped by self
   }
 }
 
-int *gps(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
   struct termios newt;                         //declarations of output variables
   char *nmea_line;
@@ -205,9 +205,9 @@ int *gps(int argc, char *argv[])
   }
 }
 
-int main(){
-    pthread_t readfromgps;
-    pthread_create(&readfromgps, NULL,&gps, argv[]);
-    &gps();
+//int main(){
+    //pthread_t readfromgps;
+    //pthread_create(&readfromgps, NULL,&gps, argv[]);
+    //&gps();
   //vcan();
-}
+//}
