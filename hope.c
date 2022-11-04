@@ -90,8 +90,12 @@ int main(int argc, char *argv[])
       lat = ((lat/100)+(lat - (lat/100))/60);
       printf("Found Latitude %f\n",lat);
         
+      char *direction = strchr(utc_time+1,COMMA);
+      char * = (utc_time + 1);
+        
       char *longitude = strchr(latitude+2,COMMA);
       float longi = atof(longitude + 2);
+      longi = ((longi/100)+(longi - (longi/100))/60);
       printf("Found longitude %f\n",longi);
 
       /*lat_card = strchr(utc_time+1,",");
