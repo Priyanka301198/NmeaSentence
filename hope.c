@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
 
       char *latitude = strchr(utc_time+1,COMMA);
       float lat = atof(latitude + 1);
-      float lat = ((lat/100)+(lat - (lat/100))/60);
+      lat = ((lat/100)+(lat - (lat/100))/60);
       printf("Found Latitude %f\n",lat);
         
       char *longitude = strchr(latitude+2,COMMA);
