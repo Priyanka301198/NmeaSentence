@@ -147,7 +147,7 @@ int main(int argc, char *argv[])
       char *latitude1 = strchr(utc_time1+1,COMMA);
       float lat1 = atof(latitude1 + 1);
       lat1 = ((lat1/100)+(lat1 - (lat1/100))/60);
-      printf("Found Latitude %f\n",lat1);
+      //printf("Found Latitude %f\n",lat1);
         
       char *direction1 = strchr(latitude1+1,COMMA);
       char *xyz = (utc_time1 + 1);
@@ -156,7 +156,18 @@ int main(int argc, char *argv[])
       char *longitude1 = strchr(direction1+1,COMMA);
       float longi1 = atof(longitude1 + 1);
       longi1 = ((longi1/100)+(longi1 - (longi1/100))/60);
-      printf("Found longitude %f\n",longi1);
+      //printf("Found longitude %f\n",longi1);
+        
+      char *direction2 = strchr(longitude1+1,COMMA);
+      char *xyz1 = (direction2 + 1);
+      //printf("Found Time %s\n",xyz);
+        
+      char *speed1 = strchr(direction2,COMMA);
+      float *speed = atof(speed1 + 1);
+      printf("Found Speed %s\n",speed);
+        
+      
+        
       }
       //parser = strstr(nmea_line, "$GPGGA");
       //if (nmea_line[3] == 'G' && nmea_line[4]=='G' && nmea_line[5] == 'A')
