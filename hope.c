@@ -196,7 +196,7 @@ int main(int argc, char *argv[])
   }
   close(fd);  
   return 0;
-  }while(end_of_loop == 0);
+  }while(1);//end_of_loop == 0
   }
   else
   {
