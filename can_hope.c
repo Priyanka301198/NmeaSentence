@@ -77,10 +77,10 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-	printf("0x%03X [%d] ",frame.can_id, frame.can_dlc);
+	sprintf("0x%03X [%d] ",frame.can_id, frame.can_dlc);
 
 	for (i = 0; i < frame.can_dlc; i++)
-		printf("%02X ",frame.data[i]);
+		sprintf("%02X ",frame.data[i]);
 
 	printf("\r\n");
 
